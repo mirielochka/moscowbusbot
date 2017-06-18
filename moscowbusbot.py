@@ -11,13 +11,6 @@ from telepot.loop import MessageLoop
 
 token='338854615:AAEVxndSfzDtsvqp9ZU951Go2z8ey4v2WRk'
 
-http_proxy  = 'http://192.168.34.21:8080'
-https_proxy = 'https://192.168.34.21:8080'
-ftp_proxy   = 'ftp://192.168.34.21:8080'
-
-proxyDict = dict(http=http_proxy, https=https_proxy, ftp=ftp_proxy)
-
-
 #with open('test.html', 'w') as output_file:
 #   output_file.write(text)
 def get_busstop(route, days, waypoint, direction):
@@ -32,7 +25,6 @@ def get_busstop(route, days, waypoint, direction):
 def get_timetable(route, days, waypoint, direction):
     url = 'http://www.mosgortrans.org/pass3/shedule.printable.php?type=avto&way=%s&date=%s&direction=%s&waypoint=%d' % \
     (route, days, direction, waypoint)
-    #r = requests.get(url, proxies = proxyDict)
     r = requests.get(url)
     soup = BeautifulSoup(r.text, "lxml")
     page = soup.find('div', {'class':'cutthis'})
